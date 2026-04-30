@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Django
+*.log
+db.sqlite3
+staticfiles/
+
+# Node
+node_modules/
+.next/
+out/
+build/
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
