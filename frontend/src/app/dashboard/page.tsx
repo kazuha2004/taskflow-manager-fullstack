@@ -20,7 +20,7 @@ export default function DashboardPage() {
 
     const fetchStats = async () => {
       try {
-        const res = await api.get('/dashboard/');
+        const res = await api.get('/api/dashboard/');
         setStats(res.data);
       } catch (err) {
         console.error('Failed to fetch dashboard stats', err);

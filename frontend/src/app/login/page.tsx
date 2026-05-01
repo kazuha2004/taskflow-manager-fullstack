@@ -17,10 +17,18 @@ export default function LoginPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const res = await api.post('/auth/login/', { email, password });
+      const res = await api.post('/api/auth/login/', { email, password });
       setToken(res.data.access);
       setUser(res.data.user);
       router.push('/dashboard');

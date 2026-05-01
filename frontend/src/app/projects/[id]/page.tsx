@@ -42,8 +42,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   const fetchData = async () => {
     try {
       const [projRes, tasksRes] = await Promise.all([
-        api.get(`/projects/${id}/`),
-        api.get(`/projects/${id}/tasks/`)
+        api.get(`/api/projects/${id}/`),
+        api.get(`/api/projects/${id}/tasks/`)
       ]);
       setProject(projRes.data);
       setTasks(tasksRes.data);
@@ -59,7 +59,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     e.preventDefault();
     setMemberError('');
     try {
-      const res = await api.post(`/projects/${id}/add-member/`, { email: memberEmail });
+      const res = await api.post(`/api/projects/${id}/add-member/`, { email: memberEmail });
       setProject(res.data);
       setShowMemberModal(false);
       setMemberEmail('');
@@ -72,7 +72,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
     e.preventDefault();
     setTaskError('');
     try {
-      const res = await api.post(`/projects/${id}/tasks/`, {
+      const res = await api.post(`/api/projects/${id}/tasks/`, {
         title: taskTitle,
         description: taskDesc,
         assigned_to: taskAssignedTo,
@@ -91,7 +91,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
 
   const handleUpdateStatus = async (taskId: string, newStatus: string) => {
     try {
-      const res = await api.patch(`/tasks/${taskId}/`, { status: newStatus });
+      const res = await api.patch(`/api/tasks/${taskId}/`, { status: newStatus });
       setTasks(tasks.map(t => t.id === taskId ? res.data : t));
     } catch (err) {
       console.error('Failed to update status', err);

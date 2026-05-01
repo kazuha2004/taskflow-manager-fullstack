@@ -25,7 +25,7 @@ class TaskSerializer(serializers.Serializer):
 
 class TaskCreateSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
-    description = serializers.CharField(max_length=1000, required=False, default='')
+    description = serializers.CharField(max_length=1000, required=False, default='', allow_blank=True, allow_null=True)
     assigned_to = serializers.EmailField()
     due_date = serializers.DateTimeField()
 

@@ -29,7 +29,7 @@ class ProjectSerializer(serializers.Serializer):
 
 class ProjectCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
-    description = serializers.CharField(max_length=500, required=False, default='')
+    description = serializers.CharField(max_length=500, required=False, default='', allow_blank=True, allow_null=True)
 
     def create(self, validated_data):
         admin = self.context['request'].user

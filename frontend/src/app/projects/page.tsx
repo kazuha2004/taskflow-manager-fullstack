@@ -30,7 +30,7 @@ export default function ProjectsPage() {
 
   const fetchProjects = async () => {
     try {
-      const res = await api.get('/projects/');
+      const res = await api.get('/api/projects/');
       setProjects(res.data);
     } catch (err) {
       console.error('Failed to fetch projects', err);
@@ -45,7 +45,7 @@ export default function ProjectsPage() {
     setCreating(true);
     
     try {
-      const res = await api.post('/projects/', { name, description });
+      const res = await api.post('/api/projects/', { name, description });
       setProjects([...projects, res.data]);
       setShowModal(false);
       setName('');
